@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Weather App-James</title>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+  <!-- Font Awesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar">
+      <div class="animated-logo logo">Weather Update</div>
+      <div class="current-weather">
+        <h2 class="location">Location</h2>
+        <div class="weatherIcon"></div>
+        <div class="temperature"></div>
+        <div class="feelslike"></div>
+        <div class="description"></div>
+        <div class="datetime" id="datetime"></div>
+      </div>
+      <div class="input-group">
+        <input type="text" id="userlocation" placeholder="Enter city..." />
+        <button id="searchBtn">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+        <button id="geoBtn">
+          <i class="fa-solid fa-location-crosshairs"></i>
+        </button>
+        <select id="unitSwitcher">
+          <option value="metric">°C</option>
+          <option value="imperial">°F</option>
+        </select>
+        <button id="lightBtn">
+          <i class="fa-regular fa-sun"></i>
+        </button>
+        <button id="darkBtn">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+      </div>
+    </aside>
+
+    <main class="weather-output fade-in">
+      <h2 class="heading">Today's Highlights</h2>
+      <div class="Highlight">
+        <div class="highlight-item">
+          <i class="fa-solid fa-droplet"></i>
+          <p>Humidity</p>
+          <p id="HValue">--%</p>
+        </div>
+        <div class="highlight-item">
+          <i class="fa-solid fa-wind"></i>
+          <p>Wind</p>
+          <p id="WValue">--</p>
+        </div>
+        <div class="highlight-item">
+          <i class="fa-solid fa-cloud"></i>
+          <p>Cloudiness</p>
+          <p id="CValue">--%</p>
+        </div>
+        <div class="highlight-item">
+          <i class="fa-solid fa-gauge-high"></i>
+          <p>Pressure</p>
+          <p id="PValue">-- hPa</p>
+        </div>
+        <div class="highlight-item">
+          <i class="fa-regular fa-sun"></i>
+          <p>Sunrise</p>
+          <p id="SRValue">--:--</p>
+        </div>
+        <div class="highlight-item">
+          <i class="fa-solid fa-moon"></i>
+          <p>Sunset</p>
+          <p id="SSValue">--:--</p>
+        </div>
+      </div>
+
+      <h2 class="heading">This Week Forecast</h2>
+      <div class="weekly-forecast" id="weeklyForecast">
+        <!-- Injected by JS -->
+      </div>
+
+      <h2 class="heading">Hourly Forecast</h2>
+      <div class="hourly-forecast" id="hourlyForecast">
+        <!-- Injected by JS -->
+      </div>
+
+      <footer>
+        <p>&copy; 2025 James Afful</p>
+      </footer>
+    </main>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>
