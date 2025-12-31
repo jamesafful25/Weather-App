@@ -40,9 +40,9 @@ Getting Started
 
 4. Open the App
 
-Simply open index.html in your web browser:
+       Simply open index.html in your web browser:
 
-open index.html
+       open index.html
 
 
 
