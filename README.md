@@ -28,7 +28,7 @@ Getting Started
    
 2. git clone https://github.com/jamesafful25/Weather-App.git
 
-    cd Weather-App
+      cd Weather-App
 
 
 3. Obtain an API Key
