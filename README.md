@@ -61,15 +61,6 @@ Simply open index.html in your web browser:
 open index.html
 
 
-Weather-App/
-│
-├── index.html           Main HTML page
-├── style.css            Styling for the app
-├── script.js            JavaScript functionality
-├── backend/
-│   └── .env.local       Local backup of API keys (not tracked in Git)
-└── README.md            Project documentation
-
 
 
 How it Works
