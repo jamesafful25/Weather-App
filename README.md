@@ -21,23 +21,6 @@ Features
 
 
 
-Features
-
-🌍 Search by City – Enter any city to get its current weather and forecast.
-
-📍 Geolocation Support – Automatically fetch weather for your current location.
-
-🌡️ Unit Switching – Toggle between Celsius (°C) and Fahrenheit (°F).
-
-🌓 Light & Dark Mode – Switch between light and dark themes.
-
-⛅ Current Weather Display – Shows temperature, "feels like", humidity, wind, cloudiness, pressure, sunrise, sunset, and weather description.
-
-📅 Forecast Display – Hourly and 5-day forecasts with weather icons, temperature, and conditions.
-
-⏰ Real-Time Date & Time – Updates continuously on the page.
-
-
 
 1. Clone the repository
    
