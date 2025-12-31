@@ -1,14 +1,92 @@
-README.md
-# Weather App 🌦️
+Weather App 🌦️
 
-A simple web app that shows weather info using HTML, CSS, and JavaScript.
+A modern, interactive weather web application built with HTML, CSS, and JavaScript. It fetches real-time weather data from the OpenWeatherMap API and provides current, hourly, and weekly weather forecasts with an intuitive and responsive UI.
 
-## Features
-- Fetches real-time weather data
-- Displays temperature, humidity, wind, and more
 
-## How to Run
-Open `index.html` in your browser.
+Features
 
-## Author
+🌍 Search by City – Enter any city to get its current weather and forecast.
+
+📍 Geolocation Support – Automatically fetch weather for your current location.
+
+🌡️ Unit Switching – Toggle between Celsius (°C) and Fahrenheit (°F).
+
+🌓 Light & Dark Mode – Switch between light and dark themes.
+
+⛅ Current Weather Display – Shows temperature, "feels like", humidity, wind, cloudiness, pressure, sunrise, sunset, and weather description.
+
+📅 Forecast Display – Hourly and 5-day forecasts with weather icons, temperature, and conditions.
+
+⏰ Real-Time Date & Time – Updates continuously on the page.
+
+
+
+Features
+
+🌍 Search by City – Enter any city to get its current weather and forecast.
+
+📍 Geolocation Support – Automatically fetch weather for your current location.
+
+🌡️ Unit Switching – Toggle between Celsius (°C) and Fahrenheit (°F).
+
+🌓 Light & Dark Mode – Switch between light and dark themes.
+
+⛅ Current Weather Display – Shows temperature, "feels like", humidity, wind, cloudiness, pressure, sunrise, sunset, and weather description.
+
+📅 Forecast Display – Hourly and 5-day forecasts with weather icons, temperature, and conditions.
+
+⏰ Real-Time Date & Time – Updates continuously on the page.
+
+
+
+1. Clone the repository
+git clone https://github.com/jamesafful25/Weather-App.git
+cd Weather-App
+
+
+2. Obtain an API Key
+
+Sign up for a free API key at OpenWeatherMap
+ and replace the placeholder in script.js:
+
+const apiKey = 'YOUR_API_KEY_HERE';
+
+
+3. Open the App
+
+Simply open index.html in your web browser:
+
+open index.html
+
+
+Weather App/
+├── index.html          # Main HTML page
+├── style.css           # Styling for the app
+├── script.js           # JavaScript functionality
+├── backend/.env.local  # Local backup of API keys (not tracked in Git)
+└── README.md           # Project documentation
+
+
+How it Works
+
+The user can search for a city or use geolocation to get their current weather.
+
+The app fetches real-time weather data from OpenWeatherMap API.
+
+Displays current weather details, including temperature, feels like, humidity, wind, cloudiness, pressure, sunrise, sunset, and weather description.
+
+Shows hourly and weekly forecasts with weather icons and temperatures.
+
+Users can switch units between °C and °F and toggle light/dark mode.
+
+
+
+
+Author
+
 James Afful
+
+GitHub: @jamesafful25
+Email: james.afful47@gmail.com
+
+Year: 2025
