@@ -22,22 +22,23 @@ Features
 
 
 
+Getting Started
+
 1. Clone the repository
    
 2. git clone https://github.com/jamesafful25/Weather-App.git
 
-cd Weather-App
+    cd Weather-App
 
 
 3. Obtain an API Key
 
-Sign up for a free API key at OpenWeatherMap
- and replace the placeholder in script.js:
+      Sign up for a free API key at OpenWeatherMap
+       and replace the placeholder in script.js:
 
-const apiKey = 'YOUR_API_KEY_HERE';
+        const apiKey = 'YOUR_API_KEY_HERE';
 
-
-3. Open the App
+4. Open the App
 
 Simply open index.html in your web browser:
 
