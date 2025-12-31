@@ -1,4 +1,4 @@
-const apiKey = '20c68192f3495c14d4b92c9d0c1c10e3';
+const apiKey = 
 const searchBtn = document.getElementById('searchBtn');
 const searchInput = document.getElementById('userlocation');
 const unitSwitcher = document.getElementById('unitSwitcher');
