@@ -42,7 +42,7 @@ Getting Started
 
        Simply open index.html in your web browser:
 
-       open index.html
+        open index.html
 
 
 
