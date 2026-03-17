@@ -1,4 +1,4 @@
-Weather App 🌦️
+Weather App 
 
 A modern, interactive weather web application built with HTML, CSS, and JavaScript. It fetches real-time weather data from the OpenWeatherMap API and provides current, hourly, and weekly weather forecasts with an intuitive and responsive UI.
 
