@@ -1,0 +1,22 @@
+# Terraform
+terraform/.terraform/
+terraform/*.tfstate
+terraform/*.tfstate.*
+terraform/*.tfplan
+terraform/crash.log
+terraform/*.tfvars
+
+# Secrets
+.env
+.env.*
+
+# Node.js
+node_modules/
+
+# Build outputs
+dist/
+build/
+
+# Operating system
+.DS_Store
+Thumbs.db
