@@ -27,12 +27,12 @@ resource "aws_iam_policy" "github_actions_ecr" {
 
         Action = [
           "ecr:BatchCheckLayerAvailability",
+          "ecr:BatchGetImage",
           "ecr:InitiateLayerUpload",
           "ecr:UploadLayerPart",
           "ecr:CompleteLayerUpload",
           "ecr:PutImage"
         ]
-
         Resource = aws_ecr_repository.weather_app.arn
       }
     ]

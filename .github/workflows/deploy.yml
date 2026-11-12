@@ -5,6 +5,14 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'index.html'
+      - 'style.css'
+      - 'script.js'
+      - 'Dockerfile'
+      - 'k8s/**'
+      - 'terraform/**'
+      - '.github/workflows/deploy.yml'
 
   workflow_dispatch:
 

@@ -11,7 +11,7 @@ resource "aws_eks_node_group" "main" {
   subnet_ids = aws_subnet.public[*].id
 
   # EC2 instance configuration
-  instance_types = ["t3.medium"]
+  instance_types = ["t3.small"]
 
   # Worker node scaling
   scaling_config {

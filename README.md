@@ -1,139 +1,248 @@
-# Weather App
+# Weather App – AWS EKS Deployment with Terraform and GitHub Actions
 
-A modern, responsive, and interactive weather forecasting web application built with **HTML5, CSS3, and JavaScript**. The application integrates the **OpenWeatherMap API** to retrieve and display real-time weather information, hourly forecasts, and 5-day weather predictions.
+A modern, responsive weather forecasting web application deployed on **Amazon Web Services (AWS) using Amazon Elastic Kubernetes Service (EKS)**.
 
-Users can search for weather conditions in different cities or use geolocation to retrieve weather information for their current location. The application also supports Celsius and Fahrenheit temperature conversion, light and dark themes, and a dynamic date and time display.
+The application integrates the OpenWeatherMap API to retrieve real-time weather information, hourly forecasts and 5-day weather predictions.
 
-## Live Features
-
-- Search for weather information by city.
-- Retrieve weather information using the device's geographical location.
-- View current weather conditions and detailed atmospheric information.
-- Explore hourly and 5-day weather forecasts.
-- Switch between Celsius (°C) and Fahrenheit (°F).
-- Toggle between light and dark display themes.
-- View dynamically updated date and time information.
-- Access a responsive interface across different screen sizes.
+This project demonstrates end-to-end cloud infrastructure provisioning, containerisation, Kubernetes orchestration and automated CI/CD deployment using Terraform, Amazon ECR and GitHub Actions.
 
 ## 1. Project Overview
 
-The Weather App was developed to provide users with an accessible and intuitive way to retrieve and monitor weather conditions.
+The Weather App allows users to search for weather conditions in different cities or retrieve weather information using their device's geographical location.
 
-The application consumes weather data from the OpenWeatherMap API and transforms the returned information into a user-friendly interface.
+Beyond frontend development, this project demonstrates practical DevOps and cloud engineering skills through the deployment of a containerised application to AWS.
 
-It demonstrates practical frontend development concepts, including:
+The infrastructure is provisioned using Terraform, while GitHub Actions automates the application build, container image publishing and Kubernetes deployment.
 
-- JavaScript-based API integration.
-- Asynchronous data retrieval.
-- JSON response handling.
-- Browser geolocation.
-- Dynamic DOM manipulation.
-- Event handling and user interaction.
-- Responsive web design.
-- Client-side application state and interface updates.
-
-## 2. Key Features
+## 2. Application Features
 
 ### Current Weather Information
-
-Displays detailed weather information for a selected city, including:
-
 - Current temperature.
 - Feels-like temperature.
-- Weather description and conditions.
+- Weather descriptions and conditions.
 - Humidity.
 - Wind speed.
 - Cloud coverage.
 - Atmospheric pressure.
 - Sunrise and sunset times.
 
-### City Search
-
-Users can enter a city name to retrieve its current weather conditions and forecast information.
-
-### Geolocation Support
-
-The application uses browser geolocation functionality to retrieve the user's current coordinates and obtain weather information for their location.
-
-Location access depends on browser permissions and device location availability.
-
 ### Weather Forecasts
+- Hourly weather forecasts.
+- 5-day weather forecasts.
+- Temperature and weather condition information.
 
-Provides forecast information to help users understand expected weather conditions.
-
-- Hourly weather forecast.
-- 5-day weather forecast.
-- Temperature information.
-- Weather conditions and corresponding icons.
-
-### Temperature Unit Conversion
-
-Users can switch between:
-
-- Celsius (°C)
-- Fahrenheit (°F)
-
-### Light and Dark Themes
-
-Provides light and dark display modes, allowing users to switch between themes according to their preferences.
-
-### Dynamic Date and Time
-
-Displays a continuously updated date and time within the application.
+### Interactive Features
+- Search weather information by city.
+- Browser geolocation support.
+- Celsius and Fahrenheit conversion.
+- Light and dark display themes.
+- Dynamic date and time.
+- Responsive interface for different screen sizes.
 
 ## 3. Technology Stack
 
 | Technology | Purpose |
 |---|---|
-| HTML5 | Application structure and content |
-| CSS3 | Styling, layouts, and responsive design |
-| JavaScript | Application logic and interactive functionality |
-| OpenWeatherMap API | Real-time weather data and forecast information |
-| Fetch API | HTTP requests and API communication |
-| Browser Geolocation API | Retrieval of geographical coordinates |
-| JSON | Weather API response data exchange |
+| HTML5 | Application structure |
+| CSS3 | Styling and responsive design |
+| JavaScript | Application logic and interactivity |
+| OpenWeatherMap API | Weather data and forecasts |
+| Fetch API | External API communication |
+| Docker | Application containerisation |
+| Nginx | Web server inside the container |
+| Amazon ECR | Container image storage |
+| Amazon EKS | Kubernetes orchestration |
+| Kubernetes | Application deployment and service management |
+| AWS Application Load Balancer | External application access |
+| Terraform | Infrastructure as Code |
+| GitHub Actions | CI/CD automation |
+| AWS IAM OIDC | Secure GitHub Actions authentication |
 
-## 4. Application Architecture
+## 4. AWS Cloud Architecture
 
-The application follows a lightweight client-side architecture without requiring a separate backend server.
+The application is deployed using the following architecture:
 
-### Frontend
+```text
+Developer
+    |
+    v
+GitHub Repository
+    |
+    v
+GitHub Actions
+    |
+    |-- Authenticate with AWS using OIDC
+    |
+    |-- Build Docker Image
+    |
+    v
+Amazon ECR
+    |
+    |-- Store Container Image
+    |
+    v
+Amazon EKS
+    |
+    |-- Kubernetes Deployment
+    |-- Kubernetes Service
+    |
+    v
+AWS Application Load Balancer
+    |
+    v
+Weather App
+    |
+    v
+OpenWeatherMap API
+```
 
-- **HTML5:** Defines the structure and layout of the application.
-- **CSS3:** Controls the visual presentation, themes, and responsive layouts.
-- **JavaScript:** Handles application logic, API requests, user interactions, and dynamic content rendering.
+### AWS Services
 
-### External API Integration
+| AWS Service | Responsibility |
+|---|---|
+| Amazon VPC | Isolated cloud networking |
+| Public Subnets | Host the internet-facing load balancer |
+| Internet Gateway | Internet connectivity for public subnets |
+| Amazon EKS | Managed Kubernetes control plane |
+| Amazon EC2 | Kubernetes worker nodes |
+| Amazon ECR | Docker image repository |
+| AWS IAM | Identity and access management |
+| IAM OIDC Provider | GitHub Actions workload authentication |
+| Application Load Balancer | Routes external traffic to the application |
 
-The application communicates with the OpenWeatherMap API to retrieve weather information.
+## 5. Infrastructure as Code – Terraform
 
-The Fetch API is used to send HTTP requests, receive responses, and process the returned JSON data.
+Terraform is used to provision and manage the AWS infrastructure.
 
-### Geolocation Integration
+The infrastructure configuration includes:
 
-The browser Geolocation API retrieves the user's geographical coordinates, subject to permission. These coordinates are then used to request location-based weather information.
+- VPC and subnet configuration.
+- Internet Gateway and routing.
+- EKS cluster.
+- EKS managed node group.
+- IAM roles and policies.
+- GitHub Actions OIDC integration.
+- Amazon ECR repository.
+- Networking and security configuration.
 
-## 5. Project Structure
+Infrastructure changes are managed through Terraform plans and applies.
+
+This approach makes the infrastructure configuration version-controlled and reproducible.
+
+## 6. CI/CD Pipeline – GitHub Actions
+
+GitHub Actions automates the application deployment process.
+
+### Deployment Workflow
+
+1. **Source Control:** Developer pushes application changes to the GitHub repository.
+2. **Workflow Trigger:** GitHub Actions detects relevant changes on the `main` branch.
+3. **AWS Authentication:** GitHub Actions authenticates with AWS using OpenID Connect (OIDC).
+4. **Docker Build:** The hosted GitHub Actions runner builds the application container image.
+5. **Image Publishing:** The container image is pushed to Amazon ECR.
+6. **Kubernetes Authentication:** The workflow configures access to the Amazon EKS cluster.
+7. **Load Balancer Controller:** The workflow installs or upgrades the AWS Load Balancer Controller using Helm.
+8. **Application Deployment:** Kubernetes manifests are applied to the EKS cluster.
+9. **Deployment Verification:** The workflow checks application rollout, load balancer provisioning and HTTP availability.
+10. **Deployment Summary:** GitHub Actions publishes the application URL and deployment details.
+
+### CI/CD Security
+
+The pipeline uses AWS IAM OIDC authentication instead of storing long-lived AWS access keys in GitHub repository secrets.
+
+### Documentation-Only Changes
+
+The workflow uses GitHub Actions path filters to avoid unnecessary deployments when only documentation files, such as the README and screenshots, are modified.
+
+## 7. Project Screenshots
+
+### Application Interface
+
+The following screenshots demonstrate the application's user interface and responsive presentation.
+
+![Weather App Homepage 1](docs/screenshots/application/homepage1.png)
+
+![Weather App Homepage 2](docs/screenshots/application/homepage2.png)
+
+![Weather App Homepage 3](docs/screenshots/application/homepage3.png)
+
+### AWS Infrastructure
+
+**Amazon VPC**
+
+![AWS VPC](docs/screenshots/aws/vpc.png)
+
+**Amazon ECR**
+
+![Amazon ECR](docs/screenshots/aws/ecr.png)
+
+**Amazon EKS**
+
+![Amazon EKS Cluster 1](docs/screenshots/aws/eks1.png)
+
+![Amazon EKS Cluster 2](docs/screenshots/aws/eks2.png)
+
+![Amazon EKS Cluster 3](docs/screenshots/aws/eks3.png)
+
+### CI/CD Pipeline
+
+The following screenshots demonstrate the GitHub Actions deployment workflow.
+
+![GitHub Actions CI/CD 1](docs/screenshots/cicd/cicd1.png)
+
+![GitHub Actions CI/CD 2](docs/screenshots/cicd/cicd2.png)
+
+![GitHub Actions CI/CD 3](docs/screenshots/cicd/cicd3.png)
+
+## 8. Project Structure
 
 ```text
 Weather-App/
 │
-├── index.html       # Main application structure
-├── style.css        # Application styling and themes
-├── script.js        # Application logic and API integration
-└── README.md        # Project documentation
+├── .github/
+│   └── workflows/
+│       └── deploy.yml
+│
+├── docs/
+│   └── screenshots/
+│       ├── application/
+│       │   ├── homepage1.png
+│       │   ├── homepage2.png
+│       │   └── homepage3.png
+│       │
+│       ├── aws/
+│       │   ├── ecr.png
+│       │   ├── eks1.png
+│       │   ├── eks2.png
+│       │   ├── eks3.png
+│       │   └── vpc.png
+│       │
+│       └── cicd/
+│           ├── cicd1.png
+│           ├── cicd2.png
+│           └── cicd3.png
+│
+├── k8s/
+│   ├── deployment.yaml
+│   ├── service.yaml
+│   └── ingress.yaml
+│
+├── terraform/
+│
+├── Dockerfile
+├── index.html
+├── script.js
+├── style.css
+└── README.md
 ```
 
-## 6. Getting Started
-
-Follow these instructions to run the application locally.
+## 9. Running the Application Locally
 
 ### Prerequisites
 
-You will need:
-
-- A modern web browser (Chrome, Firefox, Edge, etc.).
-- A code editor such as Visual Studio Code.
+- Git.
+- A modern web browser.
+- Visual Studio Code or another code editor.
 - An internet connection.
 - An OpenWeatherMap API key.
 
@@ -143,88 +252,64 @@ You will need:
 git clone https://github.com/jamesafful25/Weather-App.git
 ```
 
-Navigate into the project directory:
+### Step 2: Navigate into the Project
 
 ```bash
 cd Weather-App
 ```
 
-### Step 2: Obtain an OpenWeatherMap API Key
+### Step 3: Weather API Configuration
 
-1. Visit [OpenWeatherMap](https://openweathermap.org/).
-2. Create an account or sign in.
-3. Obtain an API key from your account.
-4. Open `script.js` in your code editor.
-5. Locate the API key configuration.
-
-Replace the placeholder with your API key:
+The application uses the [OpenWeatherMap API](https://openweathermap.org/) to retrieve current weather conditions and forecast data.
 
 ```javascript
-const apiKey = 'YOUR_API_KEY_HERE';
+
 ```
 
-**Important:** Do not commit your actual API key to a public GitHub repository. Because this application runs entirely in the browser, a key embedded in JavaScript is visible to users. Restrict the key through the provider's available controls and consider a backend proxy if stronger key protection is required.
+**Security note:** A key embedded in frontend JavaScript is visible to browser users. Do not commit a real API key to a public repository. Consider moving API requests behind a backend service for stronger key protection.
 
-### Step 3: Run the Application
+### Step 4: Launch the Application
 
-Open `index.html` in your web browser.
+Open `index.html` in a browser or use the Visual Studio Code Live Server extension.
 
-Alternatively, use the Visual Studio Code Live Server extension to launch the application locally.
+## 10. Skills Demonstrated
 
-No additional package installation or build process is required.
+**Frontend Development**
+- HTML5, CSS3 and JavaScript.
+- REST API integration.
+- Asynchronous JavaScript and Fetch API.
+- DOM manipulation.
+- Responsive interface development.
 
-## 7. How the Application Works
+**DevOps and Cloud Engineering**
+- AWS cloud infrastructure.
+- Terraform and Infrastructure as Code.
+- Docker containerisation.
+- Kubernetes orchestration.
+- Amazon EKS and Amazon ECR.
+- GitHub Actions CI/CD.
+- AWS IAM and OIDC authentication.
+- Helm and Kubernetes deployment automation.
 
-The application follows this general workflow:
+**Deployment and Automation**
+- Automated container image builds.
+- Container image publishing.
+- Infrastructure and application deployment.
+- Deployment health verification.
+- Documentation and source control management.
 
-1. **User Input:** The user searches for a city or selects the geolocation option.
-2. **Location Retrieval:** For geolocation requests, the browser obtains the user's geographical coordinates after permission is granted.
-3. **API Request:** JavaScript uses the Fetch API to send a request to OpenWeatherMap.
-4. **Data Retrieval:** The API returns weather information in JSON format.
-5. **Data Processing:** JavaScript extracts and processes the relevant weather information.
-6. **Interface Rendering:** The application dynamically updates the interface with current weather conditions and forecast information.
-7. **User Interaction:** Users can switch temperature units and display themes.
-
-## 8. Skills Demonstrated
-
-This project demonstrates practical experience in:
-
-- Frontend Web Development.
-- HTML5 and CSS3.
-- JavaScript Programming.
-- REST API Integration.
-- Fetch API and Asynchronous JavaScript.
-- JSON Data Processing.
-- Browser Geolocation.
-- DOM Manipulation.
-- Event-Driven Programming.
-- Responsive Web Design.
-- Interactive User Interface Development.
-
-## 9. Future Improvements
-
-Potential enhancements include:
-
-- Weather alerts and severe weather notifications.
-- Search history and saved favourite cities.
-- Improved loading indicators and API error handling.
-- Extended forecast information.
-- Weather maps and visualizations.
-- Progressive Web App (PWA) capabilities.
-- Backend integration for improved API key protection.
-
-## 10. Author
+## 11. Author
 
 **James Afful**
 
-Full-Stack Developer | DevOps & Cloud Engineer | AI Automation Engineer | Data Scientist & Analytics | Economist & Financial Analyst
+DevOps & Cloud Engineer | Backend Developer | AI Automation Engineer | Data Scientist & Economist
 
 **Professional Links**
 
-- **GitHub:** [github.com/jamesafful25](https://github.com/jamesafful25)
-- **Portfolio:** [jamesafful25.github.io/james-afful-portfolio](https://jamesafful25.github.io/james-afful-portfolio/)
-- **Email:** [james.afful47@gmail.com](mailto:james.afful47@gmail.com)
+- GitHub: [github.com/jamesafful25](https://github.com/jamesafful25)
+- Portfolio: [jamesafful25.github.io/james-afful-portfolio](https://jamesafful25.github.io/james-afful-portfolio/)
+- Email: [james.afful47@gmail.com](mailto:james.afful47@gmail.com)
 
 ---
 
-*Designed and developed by James Afful | 2025*
+*Designed, developed and deployed by James Afful.*

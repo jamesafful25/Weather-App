@@ -1,5 +1,3 @@
-const apiKey = '9ea20e3a5401587ba412436de3892dbc';
-
 const searchBtn = document.getElementById('searchBtn');
 const searchInput = document.getElementById('userlocation');
 const unitSwitcher = document.getElementById('unitSwitcher');
@@ -31,7 +29,7 @@ lightBtn.addEventListener('click', () => document.body.classList.remove('dark-mo
 darkBtn.addEventListener('click', () => document.body.classList.add('dark-mode'));
 
 function fetchWeather(city) {
-    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${currentUnit}`)
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${currentUnit}`)
         .then(res => res.json())
         .then(data => {
             if (data.cod !== 200) return alert('City not found!');
@@ -53,7 +51,7 @@ function fetchWeather(city) {
 
 
 function fetchWeatherByCoords(lat, lon) {
-    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${currentUnit}`)
+    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=${currentUnit}`)
         .then(res => res.json())
         .then(data => {
             updateCurrentWeather(data);
@@ -76,7 +74,7 @@ function updateCurrentWeather(data) {
 }
 
 function fetchForecast(lat, lon) {
-    fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${currentUnit}`)
+    fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=${currentUnit}`)
         .then(res => res.json())
         .then(data => {
             updateWeeklyForecast(data.list);
